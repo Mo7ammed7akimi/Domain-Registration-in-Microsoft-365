@@ -37,10 +37,8 @@ A step-by-step guide to registering a new domain, or connecting an existing one,
 1. Sign in to the [Microsoft 365 admin centre](https://admin.microsoft.com).
 2. Go to **Settings** > **Domains** and select **Add domain**.
 3. Enter the domain name (for example, `example.com`) and select **Use this domain**.
-4. Choose a verification method:
-   - **Sign in to the registrar** (automatic, if supported), or
-   - **Add a TXT record** (manual).
-5. For manual verification, copy the TXT record shown by Microsoft 365 and add it at the registrar's DNS settings:
+4. Choose **Add a TXT record** as the verification method.
+5. Copy the TXT record shown by Microsoft 365 and add it at your registrar's DNS settings:
 
    | Type | Host / Name | Value | TTL |
    |------|-------------|-------|-----|
