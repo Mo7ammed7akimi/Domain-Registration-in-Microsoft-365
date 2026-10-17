@@ -57,14 +57,14 @@ A step-by-step guide to registering a new domain, or connecting an existing one,
 
 Add these records once the domain is verified. They are required to send and receive email and to protect the domain's reputation. The exact values are displayed in the admin centre; the records below are typical for Exchange Online.
 
-| Type | Host / Name | Value / Data | Priority |
-|------|-------------|--------------|----------|
-| **MX** | `@` | `<domain-with-dashes>.mail.protection.outlook.com` | 0 |
-| **CNAME** | `autodiscover` | `autodiscover.outlook.com` | - |
-| **TXT (SPF)** | `@` | `v=spf1 include:spf.protection.outlook.com -all` | - |
-| **CNAME (DKIM 1)** | `selector1._domainkey` | `selector1-<domain-with-dashes>._domainkey.<tenant>.onmicrosoft.com` | - |
-| **CNAME (DKIM 2)** | `selector2._domainkey` | `selector2-<domain-with-dashes>._domainkey.<tenant>.onmicrosoft.com` | - |
-| **TXT (DMARC)** | `_dmarc` | `v=DMARC1; p=none; rua=mailto:dmarc@<domain>` | - |
+| Type | Host / Name | Value / Data | Priority | TTL |
+|------|-------------|--------------|----------|-----|
+| **MX** | `@` | `<domain-with-dashes>.mail.protection.outlook.com` | 0 | 3600 |
+| **CNAME** | `autodiscover` | `autodiscover.outlook.com` | - | 3600 |
+| **TXT (SPF)** | `@` | `v=spf1 include:spf.protection.outlook.com -all` | - | 3600 |
+| **CNAME (DKIM 1)** | `selector1._domainkey` | `selector1-<domain-with-dashes>._domainkey.<tenant>.onmicrosoft.com` | - | 3600 |
+| **CNAME (DKIM 2)** | `selector2._domainkey` | `selector2-<domain-with-dashes>._domainkey.<tenant>.onmicrosoft.com` | - | 3600 |
+| **TXT (DMARC)** | `_dmarc` | `v=DMARC1; p=none; rua=mailto:dmarc@<domain>` | - | 3600 |
 
 Replace `<domain-with-dashes>` with the domain using dashes instead of dots (for example, `example-com`), and `<tenant>` with the tenant name.
 
