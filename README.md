@@ -74,10 +74,10 @@ Replace `<domain-with-dashes>` with the domain using dashes instead of dots (for
 
 Only add these records if devices are registered with Microsoft Entra ID or managed with Microsoft Intune. If only email is needed, this section can be ignored.
 
-| Type | Host / Name | Value / Data |
-|------|-------------|--------------|
-| **CNAME** | `enterpriseregistration` | `enterpriseregistration.windows.net` |
-| **CNAME** | `enterpriseenrollment` | `enterpriseenrollment.manage.microsoft.com` |
+| Type | Host / Name | Value / Data | TTL |
+|------|-------------|--------------|-----|
+| **CNAME** | `enterpriseregistration` | `enterpriseregistration.windows.net` | 3600 |
+| **CNAME** | `enterpriseenrollment` | `enterpriseenrollment.manage.microsoft.com` | 3600 |
 
 > Use the exact target values shown in the admin centre for the domain, as they can differ between tenants and services.
 
