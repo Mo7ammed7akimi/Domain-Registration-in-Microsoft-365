@@ -72,6 +72,28 @@ Replace `<domain-with-dashes>` with the domain using dashes instead of dots (for
 
 > **Only one SPF record is allowed per domain.** If an SPF TXT record already exists, add `include:spf.protection.outlook.com` to it instead of creating a second record.
 
+> **DMARC is written by the domain owner.** No portal generates the value. Choose a policy (`p=`) and a mailbox for reports (`rua=`), then publish the result as a TXT record at `_dmarc`. The mailbox in `rua` must exist, so create a shared mailbox such as `dmarc@<domain>` first.
+
+#### DMARC policy options
+
+The `p=` tag tells receiving mail servers what to do with mail that claims to be from the domain but fails both SPF and DKIM alignment.
+
+| Policy | Value | Effect on failing mail | When to use |
+|--------|-------|------------------------|-------------|
+| Monitor | `p=none` | Delivered as normal. Reports are still sent to the `rua` address. | Starting point. Run for a few weeks and review the reports. |
+| Quarantine | `p=quarantine` | Treated as suspicious, usually placed in the spam or junk folder. | Once reports show that all legitimate mail passes. |
+| Reject | `p=reject` | Refused by the receiving server and not delivered. | Final stage, once quarantine has run without legitimate mail being affected. |
+
+Examples:
+
+```text
+v=DMARC1; p=none; rua=mailto:dmarc@<domain>
+v=DMARC1; p=quarantine; rua=mailto:dmarc@<domain>
+v=DMARC1; p=reject; rua=mailto:dmarc@<domain>
+```
+
+Recommended order: `none`, then `quarantine`, then `reject`. Moving to `quarantine` or `reject` too early can block genuine email from services that send on the domain's behalf, such as newsletters or invoicing tools. Each of those services needs to be covered by SPF or DKIM before the policy is tightened.
+
 ### Device registration and enrolment (optional)
 
 Only add these records if devices are registered with Microsoft Entra ID or managed with Microsoft Intune. If only email is needed, this section can be ignored.
