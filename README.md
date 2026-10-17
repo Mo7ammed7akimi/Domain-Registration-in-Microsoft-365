@@ -80,7 +80,7 @@ To change existing users, go to **Users** > **Active users**, select a user, the
 
 1. In **Settings** > **Domains**, confirm the status is **Healthy**.
 2. Send a test email to and from a mailbox on the new domain.
-3. Check DNS records from a terminal:
+3. Check DNS records from a terminal (PowerShell or Command Prompt):
 
    ```bash
    nslookup -type=MX example.com
