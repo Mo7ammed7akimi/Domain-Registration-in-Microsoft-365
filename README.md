@@ -68,6 +68,8 @@ Add these records once the domain is verified. They are required to send and rec
 
 Replace `<domain-with-dashes>` with the domain using dashes instead of dots (for example, `example-com`), and `<tenant>` with the tenant name.
 
+> **Note:** The DKIM CNAME values are linked to the Microsoft Defender portal. The exact values for each domain are shown under **Email & collaboration** > **Policies & rules** > **Threat policies** > **Email authentication settings** > **DKIM**. Select the domain there to copy the two CNAME records, then enable signing once they are published.
+
 > **Only one SPF record is allowed per domain.** If an SPF TXT record already exists, add `include:spf.protection.outlook.com` to it instead of creating a second record.
 
 ### Device registration and enrolment (optional)
