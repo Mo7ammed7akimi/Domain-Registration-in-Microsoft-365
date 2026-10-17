@@ -53,10 +53,9 @@ A step-by-step guide to registering a new domain, or connecting an existing one,
 
 ## DNS records reference
 
-## Microsoft Exchange (Email)
-*Add these records once the domain is verified. These are required to send and receive email, and to protect your domain's reputation.*
+### Microsoft Exchange (email)
 
-The exact values are displayed in the admin centre. The records below are typical for Exchange Online.
+Add these records once the domain is verified. They are required to send and receive email and to protect the domain's reputation. The exact values are displayed in the admin centre; the records below are typical for Exchange Online.
 
 | Type | Host / Name | Value / Data | Priority |
 |------|-------------|--------------|----------|
@@ -67,26 +66,20 @@ The exact values are displayed in the admin centre. The records below are typica
 | **CNAME (DKIM 2)** | `selector2._domainkey` | `selector2-<domain-with-dashes>._domainkey.<tenant>.onmicrosoft.com` | - |
 | **TXT (DMARC)** | `_dmarc` | `v=DMARC1; p=none; rua=mailto:dmarc@<domain>` | - |
 
----
-
-## Additional Microsoft Services (Optional)
-*Only add these if you are using Microsoft Teams (for chat/voice) or Microsoft Intune (for device management). If you only need email, you can ignore this section.*
-
-### Microsoft Teams / Skype for Business
-| Type | Host / Name | Value / Data | Priority |
-|------|-------------|--------------|----------|
-| **CNAME** | `sip` | `sipdir.online.lync.com` | - |
-| **CNAME** | `lyncdiscover` | `webdir.online.lync.com` | - |
-| **SRV** | `_sip._tls` | `100 1 443 sipdir.online.lync.com.` | 100 |
-| **SRV** | `_sipfederationtls._tcp` | `100 1 5061 sipfed.online.lync.com.` | 100 |
-
-### Microsoft Intune / Device Management
-| Type | Host / Name | Value / Data | Priority |
-|------|-------------|--------------|----------|
-| **CNAME** | `enterpriseregistration` | `enterpriseregistration.windows.net` | - |
-| **CNAME** | `enterpriseenrollment` | `enterpriseenrollment.manage.microsoft.com` *(or `enterpriseenrollment-s.manage.microsoft.com`)* | - |
-
 Replace `<domain-with-dashes>` with the domain using dashes instead of dots (for example, `example-com`), and `<tenant>` with the tenant name.
+
+> **Only one SPF record is allowed per domain.** If an SPF TXT record already exists, add `include:spf.protection.outlook.com` to it instead of creating a second record.
+
+### Device registration and enrolment (optional)
+
+Only add these records if devices are registered with Microsoft Entra ID or managed with Microsoft Intune. If only email is needed, this section can be ignored.
+
+| Type | Host / Name | Value / Data |
+|------|-------------|--------------|
+| **CNAME** | `enterpriseregistration` | `enterpriseregistration.windows.net` |
+| **CNAME** | `enterpriseenrollment` | `enterpriseenrollment.manage.microsoft.com` |
+
+> Use the exact target values shown in the admin centre for the domain, as they can differ between tenants and services.
 
 ## Set the domain as default
 
